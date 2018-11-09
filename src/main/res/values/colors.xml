@@ -15,5 +15,5 @@
     <color name="forecast_card_divider">#ccc</color>
 
     <!-- Text Colors -->
-    <color name="text_color_white">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
 </resources>
