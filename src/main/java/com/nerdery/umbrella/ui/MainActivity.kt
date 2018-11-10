@@ -20,16 +20,22 @@ import com.nerdery.umbrella.data.model.HourlyResponse
 import com.nerdery.umbrella.data.model.TempUnit
 import com.nerdery.umbrella.data.model.WeatherResponse
 import com.nerdery.umbrella.ui.adapter.MainAdapter
+import com.nerdery.umbrella.util.DateTime
 import com.nerdery.umbrella.widget.WeatherDayGridLayoutManager
 import retrofit2.Call
 import retrofit2.Response
+import java.util.*
+
 
 class MainActivity : AppCompatActivity(), ZipLocationListener {
 
     private var zipLocation: ZipLocation? = null
     private var hourlyResponse: HourlyResponse? = null
     private var currentForecast: ForecastCondition? = null
-    private var maxTemp:ForecastCondition? = null
+    private var tomorrowSublistIndex:Int = 0
+    private var maxSublistIndex:Int = 0
+    private var dayOfMonth:Int = 0
+    private var integerDayOfMonth:Int = 0
 
     override fun onLocationFound(location: ZipLocation) {
         ApiServicesProvider(application)
@@ -88,6 +94,32 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
 
         val items: List<ForecastCondition>? = hourlyResponse?.hours
 
+        if (items != null) {
+            for (item in items) {
+                val cal = Calendar.getInstance()
+                val dayOfMonth = cal.get(Calendar.DAY_OF_MONTH)
+
+                val stringDayOfMonth:String = DateTime.convertDateToString(item.time, DateTime.dayFormatter)
+                val integerDayOfMonth:Int = Integer.parseInt(stringDayOfMonth)
+
+                if (integerDayOfMonth > dayOfMonth) {
+                    tomorrowSublistIndex = items.indexOf(item)
+                    break;
+                }
+            }
+        }
+//        if (items != null) {
+//            for (item in items) {
+//                if (integerDayOfMonth + 1 > dayOfMonth) {
+//                    maxSublistIndex = items.indexOf(item)
+//                    break;
+//                }
+//            }
+//        }
+
+        val subListToday: List<ForecastCondition>? = items?.subList(1, tomorrowSublistIndex);
+        val subListTomorrow: List<ForecastCondition>? = items?.subList(tomorrowSublistIndex, items.size)
+
         for (i in 0..1) {
             // Instantiate the Views for inflating
             val cardHourlyForecast: View = LayoutInflater.from(this).inflate(R.layout.list_weather_forecast, linearLayout, false)
@@ -96,28 +128,17 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
             val todayTomorrow:TextView = cardHourlyForecast.findViewById(R.id.forecast_day)
             val recyclerView:RecyclerView = cardHourlyForecast.findViewById(R.id.fragment_weather_item)
             recyclerView.layoutManager = WeatherDayGridLayoutManager(this, WeatherDayGridLayoutManager.calculateNoOfColumns(this))
-            recyclerView.adapter = MainAdapter(items, this, application)
-
-            setMaxTemp(items)
+            //recyclerView.adapter = MainAdapter(items, this, application)
 
             if (i == 0) {
                 todayTomorrow.text = getString(R.string.today)
+                recyclerView.adapter = MainAdapter(subListToday, this, application)
                 linearLayout.addView(cardHourlyForecast)
             } else {
                 todayTomorrow.text = getString(R.string.tomorrow)
+                recyclerView.adapter = MainAdapter(subListTomorrow, this, application)
                 linearLayout.addView(cardHourlyForecast)
             }
         }
-    }
-
-    private fun setMaxTemp(items: List<ForecastCondition>?) {
-        for (i in 0..(items?.size?.minus(1) ?: 0)) {
-            val maxTemp:ForecastCondition? = items?.maxBy { items[i].temp }
-            this.maxTemp = maxTemp
-        }
-    }
-
-    fun getMaxTemp() : ForecastCondition? {
-        return maxTemp
     }
 }

@@ -44,16 +44,18 @@ class MainAdapter(private val items: List<ForecastCondition>?, private val conte
                 .error(R.drawable.ic_error_icon)
                 .into(holder.icon)
 
-        if (items[position].temp == maxTemp?.temp) {
-            holder.time.setTextColor(ContextCompat.getColor(context, R.color.weather_warm))
-            holder.temperature.setTextColor(ContextCompat.getColor(context, R.color.weather_warm))
-            holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.weather_warm), android.graphics.PorterDuff.Mode.SRC_IN)
-        } else if (items[position].temp == minTemp?.temp) {
-            holder.time.setTextColor(ContextCompat.getColor(context, R.color.weather_cool))
-            holder.temperature.setTextColor(ContextCompat.getColor(context, R.color.weather_cool))
-            holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.weather_cool), android.graphics.PorterDuff.Mode.SRC_IN)
-        } else {
-            holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.black), android.graphics.PorterDuff.Mode.SRC_IN)
+        when {
+            items[position].temp == maxTemp?.temp -> {
+                holder.time.setTextColor(ContextCompat.getColor(context, R.color.weather_warm))
+                holder.temperature.setTextColor(ContextCompat.getColor(context, R.color.weather_warm))
+                holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.weather_warm), android.graphics.PorterDuff.Mode.SRC_IN)
+            }
+            items[position].temp == minTemp?.temp -> {
+                holder.time.setTextColor(ContextCompat.getColor(context, R.color.weather_cool))
+                holder.temperature.setTextColor(ContextCompat.getColor(context, R.color.weather_cool))
+                holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.weather_cool), android.graphics.PorterDuff.Mode.SRC_IN)
+            }
+            else -> holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.black), android.graphics.PorterDuff.Mode.SRC_IN)
         }
     }
 
@@ -62,5 +64,4 @@ class MainAdapter(private val items: List<ForecastCondition>?, private val conte
         val icon: ImageView = v.grid_item_hourly_icon
         val temperature: TextView = v.grid_item_hourly_temperature
     }
-
 }
