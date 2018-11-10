@@ -4,11 +4,9 @@ import android.content.Context
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.GridLayout
+
 
 class WeatherDayGridLayoutManager : GridLayoutManager {
-
-    private val mMeasuredDimension = IntArray(2)
 
     constructor(context: Context, spanCount: Int) : super(context, spanCount) {}
 
@@ -24,5 +22,11 @@ class WeatherDayGridLayoutManager : GridLayoutManager {
 
     companion object {
         private const val WEATHER_CELL_HEIGHT = 100
+
+        fun calculateNoOfColumns(context: Context): Int {
+            val displayMetrics = context.resources.displayMetrics
+            val dpWidth = displayMetrics.widthPixels / displayMetrics.density
+            return (dpWidth / 100).toInt()
+        }
     }
 }

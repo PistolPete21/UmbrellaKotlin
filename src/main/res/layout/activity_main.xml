@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_relative_layout"
@@ -11,8 +10,8 @@
         android:id="@+id/fragment_card_view_weather"
         android:layout_width="match_parent"
         android:layout_height="185dp"
-        card_view:layout_constraintEnd_toEndOf="parent"
         card_view:cardElevation="12dp"
+        card_view:layout_constraintEnd_toEndOf="parent"
         tools:ignore="UnusedAttribute">
 
         <android.support.constraint.ConstraintLayout
@@ -27,10 +26,10 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="50sp"
-                card_view:layout_constraintTop_toTopOf="parent"
                 card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintEnd_toEndOf="parent"/>
+                card_view:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/fragment_weather_status"
@@ -39,9 +38,9 @@
                 android:layout_marginBottom="16dp"
                 android:textColor="@color/white"
                 android:textSize="24sp"
-                card_view:layout_constraintTop_toBottomOf="@id/fragment_weather_degrees"
                 card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"/>
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@id/fragment_weather_degrees" />
 
             <TextView
                 android:id="@+id/fragment_location_status"
@@ -51,35 +50,49 @@
                 android:layout_marginTop="16dp"
                 android:textColor="@color/white"
                 android:textSize="24sp"
-                card_view:layout_constraintTop_toTopOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"/>
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/fragment_image_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:background="@null"
-                android:src="@drawable/ic_settings_white_24dp" />
+                android:src="@drawable/ic_settings_white_24dp"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
+
     </android.support.v7.widget.CardView>
 
     <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment_constraint_layout_hourly_forecast"
+        card_view:layout_constraintTop_toBottomOf="@id/fragment_card_view_weather"
+        card_view:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/fragment_weather_recyclerview"
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/fragment_weather_scrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            card_view:layout_constraintTop_toBottomOf="parent"
-            android:layout_marginTop="185dp"
-            android:scrollbars="vertical" />
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/fragment_linear_layout_hourly"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
 
     </android.support.constraint.ConstraintLayout>
 
