@@ -21,10 +21,8 @@ import com.nerdery.umbrella.data.model.TempUnit
 import com.nerdery.umbrella.data.model.WeatherResponse
 import com.nerdery.umbrella.ui.adapter.MainAdapter
 import com.nerdery.umbrella.widget.WeatherDayGridLayoutManager
-
 import retrofit2.Call
 import retrofit2.Response
-import kotlin.math.max
 
 class MainActivity : AppCompatActivity(), ZipLocationListener {
 
@@ -92,7 +90,7 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
 
         for (i in 0..1) {
             // Instantiate the Views for inflating
-            val cardHourlyForecast: View = LayoutInflater.from(this).inflate(R.layout.list_weather_forecast, linearLayout, false);
+            val cardHourlyForecast: View = LayoutInflater.from(this).inflate(R.layout.list_weather_forecast, linearLayout, false)
 
             // Make references to list_weather_recyclerview
             val todayTomorrow:TextView = cardHourlyForecast.findViewById(R.id.forecast_day)

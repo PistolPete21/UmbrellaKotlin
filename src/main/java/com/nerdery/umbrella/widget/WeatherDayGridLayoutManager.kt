@@ -8,9 +8,9 @@ import android.view.View
 
 class WeatherDayGridLayoutManager : GridLayoutManager {
 
-    constructor(context: Context, spanCount: Int) : super(context, spanCount) {}
+    constructor(context: Context, spanCount: Int) : super(context, spanCount)
 
-    constructor(context: Context, spanCount: Int, orientation: Int, reverseLayout: Boolean) : super(context, spanCount, orientation, reverseLayout) {}
+    constructor(context: Context, spanCount: Int, orientation: Int, reverseLayout: Boolean) : super(context, spanCount, orientation, reverseLayout)
 
     override fun onMeasure(recycler: RecyclerView.Recycler?, state: RecyclerView.State?,
                            widthSpec: Int, heightSpec: Int) {

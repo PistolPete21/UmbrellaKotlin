@@ -3,8 +3,6 @@ package com.nerdery.umbrella.ui.adapter
 import android.app.Application
 import android.content.Context
 import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.drawable.DrawableCompat
-import android.support.v4.graphics.drawable.DrawableCompat.*
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -14,13 +12,9 @@ import android.widget.TextView
 import com.nerdery.umbrella.R
 import com.nerdery.umbrella.data.ApiServicesProvider
 import com.nerdery.umbrella.data.IconProvider
-import com.nerdery.umbrella.data.api.IconApi
 import com.nerdery.umbrella.data.model.ForecastCondition
-import com.nerdery.umbrella.ui.MainActivity
 import com.nerdery.umbrella.util.DateTime
 import kotlinx.android.synthetic.main.weather_grid_item.view.*
-import java.security.AccessController.getContext
-import kotlin.math.roundToInt
 
 class MainAdapter(private val items: List<ForecastCondition>?, private val context: Context, private val application: Application) : RecyclerView.Adapter<MainAdapter.HourlyForecastHolder>() {
     override fun getItemCount(): Int {

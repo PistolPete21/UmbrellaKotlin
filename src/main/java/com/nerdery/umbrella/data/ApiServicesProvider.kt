@@ -1,25 +1,21 @@
 package com.nerdery.umbrella.data
 
 import android.app.Application
-
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.jakewharton.byteunits.DecimalByteUnit.MEGABYTES
 import com.jakewharton.picasso.OkHttp3Downloader
-import com.nerdery.umbrella.data.api.WeatherService
 import com.nerdery.umbrella.data.api.IconApi
+import com.nerdery.umbrella.data.api.WeatherService
 import com.squareup.picasso.Picasso
-
-import java.io.File
-import java.util.Date
-
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
-
-import com.jakewharton.byteunits.DecimalByteUnit.MEGABYTES
+import java.io.File
+import java.util.*
 
 /**
  * Provides [Picasso], [WeatherService], and [IconApi]
