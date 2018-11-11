@@ -17,6 +17,12 @@ import com.nerdery.umbrella.util.DateTime
 import kotlinx.android.synthetic.main.weather_grid_item.view.*
 
 class MainAdapter(private val items: List<ForecastCondition>?, private val context: Context, private val application: Application) : RecyclerView.Adapter<MainAdapter.HourlyForecastHolder>() {
+
+//    var maxTemp:ForecastCondition? = null
+//    var minTemp:ForecastCondition? = null
+    var maxCalculated = false
+    var minCalculated = false
+
     override fun getItemCount(): Int {
         return items?.size ?: 0
     }
@@ -31,14 +37,15 @@ class MainAdapter(private val items: List<ForecastCondition>?, private val conte
         holder.time.text = timeString
         holder.temperature.text = String.format("%s\u00B0", items!![position].temp.let { Math.round(it).toString() })
 
-        val highlighted:IconProvider.IconType
-        val maxTemp = items.maxBy { it -> it.temp }
-        val minTemp = items.minBy { it -> it.temp }
-        highlighted = if (items[position].temp == maxTemp?.temp || items[position].temp == minTemp?.temp) {
+        val maxTemp = items.maxBy { it -> Math.round(it.temp) }
+        val minTemp = items.minBy { it -> Math.round(it.temp) }
+
+        val highlighted:IconProvider.IconType = if (items[position].temp == maxTemp?.temp || items[position].temp == minTemp?.temp) {
             IconProvider.IconType.HIGHLIGHTED
         } else {
             IconProvider.IconType.NORMAL
         }
+
         ApiServicesProvider(application).picasso
                 .load(items[position].icon?.let { IconProvider().getUrlForIcon(it, highlighted)})
                 .error(R.drawable.ic_error_icon)
@@ -55,7 +62,12 @@ class MainAdapter(private val items: List<ForecastCondition>?, private val conte
                 holder.temperature.setTextColor(ContextCompat.getColor(context, R.color.weather_cool))
                 holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.weather_cool), android.graphics.PorterDuff.Mode.SRC_IN)
             }
-            else -> holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.black), android.graphics.PorterDuff.Mode.SRC_IN)
+            items[position].temp == maxTemp?.temp && items[position].temp == minTemp?.temp -> {
+                holder.time.setTextColor(ContextCompat.getColor(context, R.color.green))
+                holder.temperature.setTextColor(ContextCompat.getColor(context, R.color.green))
+                holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.green), android.graphics.PorterDuff.Mode.SRC_IN)
+
+            } else -> holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.black), android.graphics.PorterDuff.Mode.SRC_IN)
         }
     }
 

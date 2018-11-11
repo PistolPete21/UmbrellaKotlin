@@ -4,4 +4,11 @@
   <!-- Add today/tomorrow labels -->
   <string name="today">Today</string>
   <string name="tomorrow">Tomorrow</string>
+
+  <!-- Toolbar text -->
+  <string name="umbrella_toolbar_text">Umbrella</string>
+
+  <!-- Settings static strings-->
+  <string name="zip">Zip</string>
+  <string name="units">Units</string>
 </resources>
