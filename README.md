@@ -17,6 +17,13 @@ First step - Get Weather Forecast
 ```
 Click on the cog in upper right corner and click on the zip code box and enter a new zip code. Once you hit the back arrow a new weather forecast should load
 ```
+![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/Screenshot1.JPG)
+![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/Screenshot2.JPG)
+![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/Screenshot3.JPG)
+![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/Screenshot4.JPG)
+![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/Screenshot5.JPG)
+![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/Screenshot6.JPG)
+![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/Screenshot7.JPG)
 
 ## Authors
 
