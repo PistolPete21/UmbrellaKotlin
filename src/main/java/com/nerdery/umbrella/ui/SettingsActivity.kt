@@ -21,8 +21,8 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_activity)
         if (intent != null) {
-            location = this.intent.getSerializableExtra("ZipLocation") as ZipLocation
-            tempUnit = this.intent.getSerializableExtra("TempUnit") as TempUnit
+            //location = this.intent.getSerializableExtra("ZipLocation") as ZipLocation
+            //tempUnit = this.intent.getSerializableExtra("TempUnit") as TempUnit
         }
         setupView(location)
     }
@@ -86,8 +86,8 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         val intent = Intent()
-        intent.putExtra("ZipLocation", location)
-        intent.putExtra("TempUnit", tempUnit)
+        //intent.putExtra("ZipLocation", location)
+        //intent.putExtra("TempUnit", tempUnit)
         setResult(RESULT_OK, intent);
     }
 }

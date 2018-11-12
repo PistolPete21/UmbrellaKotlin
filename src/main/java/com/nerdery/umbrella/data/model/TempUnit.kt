@@ -1,12 +1,11 @@
 package com.nerdery.umbrella.data.model
 
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
 
 /**
  * Temperature unit to be used in requests for [com.nerdery.umbrella.data.api.WeatherService]
  */
-enum class TempUnit(private val value: String) : Serializable {
+enum class TempUnit(private val value: String) {
     @SerializedName("si")
     CELSIUS("si"),
 

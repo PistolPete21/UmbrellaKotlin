@@ -18,9 +18,6 @@ import kotlinx.android.synthetic.main.weather_grid_item.view.*
 
 class MainAdapter(private val items: List<ForecastCondition>?, private val context: Context, private val application: Application) : RecyclerView.Adapter<MainAdapter.HourlyForecastHolder>() {
 
-    var maxCalculated = false
-    var minCalculated = false
-
     override fun getItemCount(): Int {
         return items?.size ?: 0
     }

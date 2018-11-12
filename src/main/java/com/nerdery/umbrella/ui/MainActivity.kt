@@ -41,7 +41,8 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
     private var tempUnit:TempUnit? = null
     private var tomorrowSublistIndex:Int = 0
     private var maxSublistIndex:Int = 0
-    private var lovelyProgressDialog:LovelyProgressDialog? = null
+
+    private var lovelyProgressDialog: LovelyProgressDialog? = null
 
     override fun onLocationFound(location: ZipLocation) {
         ApiServicesProvider(application)
@@ -69,16 +70,15 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupProgressDialog()
-
         ZipCodeService.getLatLongByZip(this, "60647", this)
     }
 
     private fun setupProgressDialog() {
         lovelyProgressDialog = LovelyProgressDialog(this)
-        lovelyProgressDialog!!.setIcon(R.mipmap.ic_launcher)
-        lovelyProgressDialog!!.setTitle(R.string.fetching_weather)
-        lovelyProgressDialog!!.setTopColor(Objects.requireNonNull<Context>(this).resources.getColor(R.color.weather_warm))
-        lovelyProgressDialog!!.show()
+        lovelyProgressDialog?.setIcon(R.mipmap.ic_launcher)
+        lovelyProgressDialog?.setTitle(R.string.fetching_weather)
+        lovelyProgressDialog?.setTopColor(Objects.requireNonNull<Context>(this).resources.getColor(R.color.weather_warm))
+        lovelyProgressDialog?.show()
     }
 
     private fun setupView(forecastCondition: ForecastCondition?, hourlyResponse: HourlyResponse?) {
@@ -100,8 +100,8 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
             }
         settingsButton.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
-            intent.putExtra("ZipLocation", zipLocation)
-            intent.putExtra("TempUnit", tempUnit)
+            //intent.putExtra("ZipLocation", zipLocation)
+            //intent.putExtra("TempUnit", tempUnit)
             startActivityForResult(intent, 1)
         }
 
@@ -135,6 +135,7 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
                 linearLayout.addView(cardHourlyForecast)
             }
         }
+
         lovelyProgressDialog?.dismiss()
     }
 
@@ -142,8 +143,8 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                zipLocation = data?.getSerializableExtra("ZipLocation") as ZipLocation
-                tempUnit = data.getSerializableExtra("TempUnit") as TempUnit
+//                zipLocation = data?.getSerializableExtra("ZipLocation") as ZipLocation
+//                tempUnit = data.getSerializableExtra("TempUnit") as TempUnit
                 Toast.makeText(this, "Working", Toast.LENGTH_LONG).show()
             }
         }
