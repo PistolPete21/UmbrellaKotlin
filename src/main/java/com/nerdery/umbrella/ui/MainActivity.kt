@@ -1,5 +1,7 @@
 package com.nerdery.umbrella.ui
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -12,7 +14,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.google.gson.Gson
+import android.widget.Toast
 import com.nerdery.umbrella.R
 import com.nerdery.umbrella.data.ApiServicesProvider
 import com.nerdery.umbrella.data.ZipCodeService
@@ -25,6 +27,7 @@ import com.nerdery.umbrella.data.model.WeatherResponse
 import com.nerdery.umbrella.ui.adapter.MainAdapter
 import com.nerdery.umbrella.util.DateTime
 import com.nerdery.umbrella.widget.WeatherDayGridLayoutManager
+import com.yarolegovich.lovelydialog.LovelyProgressDialog
 import retrofit2.Call
 import retrofit2.Response
 import java.util.*
@@ -32,11 +35,13 @@ import java.util.*
 
 class MainActivity : AppCompatActivity(), ZipLocationListener {
 
-    private var zipLocation: ZipLocation? = null
     private var hourlyResponse: HourlyResponse? = null
     private var currentForecast: ForecastCondition? = null
+    private var zipLocation: ZipLocation? = null
+    private var tempUnit:TempUnit? = null
     private var tomorrowSublistIndex:Int = 0
     private var maxSublistIndex:Int = 0
+    private var lovelyProgressDialog:LovelyProgressDialog? = null
 
     override fun onLocationFound(location: ZipLocation) {
         ApiServicesProvider(application)
@@ -44,6 +49,7 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
                 .enqueue(object : retrofit2.Callback<WeatherResponse> {
                     override fun onResponse(call: Call<WeatherResponse>, response: Response<WeatherResponse>) {
                         zipLocation = location
+                        tempUnit = TempUnit.FAHRENHEIT
                         hourlyResponse = response.body()?.hourly
                         currentForecast = response.body()?.currentForecast
                         setupView(currentForecast, hourlyResponse)
@@ -68,7 +74,11 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
     }
 
     private fun setupProgressDialog() {
-        //
+        lovelyProgressDialog = LovelyProgressDialog(this)
+        lovelyProgressDialog!!.setIcon(R.mipmap.ic_launcher)
+        lovelyProgressDialog!!.setTitle(R.string.fetching_weather)
+        lovelyProgressDialog!!.setTopColor(Objects.requireNonNull<Context>(this).resources.getColor(R.color.weather_warm))
+        lovelyProgressDialog!!.show()
     }
 
     private fun setupView(forecastCondition: ForecastCondition?, hourlyResponse: HourlyResponse?) {
@@ -90,8 +100,9 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
             }
         settingsButton.setOnClickListener {
             val intent = Intent(this, SettingsActivity::class.java)
-            intent.putExtra("ZipLocation", Gson().toJson(zipLocation))
-            startActivity(intent)
+            intent.putExtra("ZipLocation", zipLocation)
+            intent.putExtra("TempUnit", tempUnit)
+            startActivityForResult(intent, 1)
         }
 
         // Setup forecast cards
@@ -122,6 +133,18 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
                 todayTomorrow.text = getString(R.string.tomorrow)
                 recyclerView.adapter = MainAdapter(subListTomorrow, this, application)
                 linearLayout.addView(cardHourlyForecast)
+            }
+        }
+        lovelyProgressDialog?.dismiss()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                zipLocation = data?.getSerializableExtra("ZipLocation") as ZipLocation
+                tempUnit = data.getSerializableExtra("TempUnit") as TempUnit
+                Toast.makeText(this, "Working", Toast.LENGTH_LONG).show()
             }
         }
     }

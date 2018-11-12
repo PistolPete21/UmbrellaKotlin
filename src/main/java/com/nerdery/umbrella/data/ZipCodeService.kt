@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName
 import com.nerdery.umbrella.R
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
+import java.io.Serializable
 
 /**
  * This Service is used to lookup location details of a specific US ZIP code
@@ -62,7 +63,7 @@ interface ZipLocationListener {
     fun onLocationNotFound()
 }
 
-class ZipLocation {
+class ZipLocation : Serializable {
     @SerializedName("z")
     var zipCode: Long = 0
         internal set

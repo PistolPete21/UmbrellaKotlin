@@ -66,7 +66,7 @@
         android:background="#CCCCCC" />
 
     <LinearLayout
-        android:id="@+id/second_zip_code_layout"
+        android:id="@+id/units_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="75dp"
@@ -105,7 +105,7 @@
         android:id="@+id/decoration_bar_second"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        app:layout_constraintTop_toBottomOf="@id/second_zip_code_layout"
+        app:layout_constraintTop_toBottomOf="@id/units_layout"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:background="#CCCCCC" />

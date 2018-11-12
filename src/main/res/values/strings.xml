@@ -11,4 +11,17 @@
   <!-- Settings static strings-->
   <string name="zip">Zip</string>
   <string name="units">Units</string>
+  <string name="fahrenheit">Fahrenheit</string>
+  <string name="celsius">Celsius</string>
+
+  <array name="units">
+    <item >Fahrenheit</item>
+    <item >Celsius</item>
+  </array>
+
+  <!-- Dialog Messages -->
+  <string name="unit_message">Please select a unit</string>
+  <string name="zip_message">Please enter a zip code</string>
+  <string name="zip_error">Please enter a valid zip code</string>
+  <string name="fetching_weather">Fetching weather…</string>
 </resources>

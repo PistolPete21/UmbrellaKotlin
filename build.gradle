@@ -107,6 +107,7 @@ dependencies {
   debugImplementation "com.facebook.stetho:stetho:$FACEBOOK_VERSION"
   debugImplementation "com.facebook.stetho:stetho-okhttp3:$FACEBOOK_VERSION"
   debugImplementation "com.facebook.stetho:stetho-timber:$FACEBOOK_VERSION@aar"
+  implementation 'com.yarolegovich:lovely-dialog:1.1.0'
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   implementation 'com.android.support.constraint:constraint-layout:1.1.3'

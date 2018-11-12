@@ -18,8 +18,6 @@ import kotlinx.android.synthetic.main.weather_grid_item.view.*
 
 class MainAdapter(private val items: List<ForecastCondition>?, private val context: Context, private val application: Application) : RecyclerView.Adapter<MainAdapter.HourlyForecastHolder>() {
 
-//    var maxTemp:ForecastCondition? = null
-//    var minTemp:ForecastCondition? = null
     var maxCalculated = false
     var minCalculated = false
 
