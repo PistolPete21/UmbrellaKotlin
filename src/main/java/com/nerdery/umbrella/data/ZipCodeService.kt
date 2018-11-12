@@ -43,7 +43,7 @@ object ZipCodeService {
         listener.onLocationNotFound()
     }
 
-    private fun readJsonFile(inputStream: InputStream): String? {
+    fun readJsonFile(inputStream: InputStream): String? {
         val outputStream = ByteArrayOutputStream()
 
         inputStream.use { input ->

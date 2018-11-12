@@ -1,21 +1,24 @@
 package com.nerdery.umbrella.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.MenuItem
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.google.gson.Gson
 import com.nerdery.umbrella.R
 import com.nerdery.umbrella.data.ZipLocation
 import com.nerdery.umbrella.data.model.TempUnit
 import com.yarolegovich.lovelydialog.LovelyChoiceDialog
 import com.yarolegovich.lovelydialog.LovelyTextInputDialog
 
+
 class SettingsActivity : AppCompatActivity() {
 
     private var location: ZipLocation? = null
     private var tempUnit: TempUnit? = null
+    private var zipString: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,11 +26,18 @@ class SettingsActivity : AppCompatActivity() {
         if (intent != null) {
             //location = this.intent.getSerializableExtra("ZipLocation") as ZipLocation
             //tempUnit = this.intent.getSerializableExtra("TempUnit") as TempUnit
+            val gson = Gson()
+            val strObj = intent.getStringExtra("ZipLocation")
+            val tempObj = intent.getStringExtra("TempUnit")
+            location = gson.fromJson<ZipLocation>(strObj, ZipLocation::class.java)
+            tempUnit = gson.fromJson<TempUnit>(tempObj, TempUnit::class.java)
+
+            zipString = location?.zipCode.toString()
         }
-        setupView(location)
+        setupView()
     }
 
-    private fun setupView(location: ZipLocation?) {
+    private fun setupView() {
         //setup toolbar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         toolbar.setTitle(R.string.umbrella_toolbar_text)
@@ -60,7 +70,10 @@ class SettingsActivity : AppCompatActivity() {
                             text.matches(("\\w+[0-9]").toRegex())
                         }
                     }
-                    .setConfirmButton(android.R.string.ok) { text -> zip.text = text }
+                    .setConfirmButton(android.R.string.ok) { text ->
+                        zip.text = text
+                        zipString = text
+                    }
                     .show()
         }
 
@@ -84,11 +97,22 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onBackPressed() {
-        val intent = Intent()
-        //intent.putExtra("ZipLocation", location)
-        //intent.putExtra("TempUnit", tempUnit)
+        val gson = Gson()
+        intent.putExtra("ZipLocation", gson.toJson(zipString))
+        intent.putExtra("TempUnit", gson.toJson(tempUnit))
         setResult(RESULT_OK, intent);
+        finish();
     }
 }
 

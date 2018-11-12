@@ -14,9 +14,10 @@ import com.nerdery.umbrella.data.ApiServicesProvider
 import com.nerdery.umbrella.data.IconProvider
 import com.nerdery.umbrella.data.model.ForecastCondition
 import com.nerdery.umbrella.util.DateTime
+import com.yarolegovich.lovelydialog.LovelyProgressDialog
 import kotlinx.android.synthetic.main.weather_grid_item.view.*
 
-class MainAdapter(private val items: List<ForecastCondition>?, private val context: Context, private val application: Application) : RecyclerView.Adapter<MainAdapter.HourlyForecastHolder>() {
+class MainAdapter(private val items: List<ForecastCondition>?, private val context: Context, private val application: Application, private val lovelyProgressDialog: LovelyProgressDialog?) : RecyclerView.Adapter<MainAdapter.HourlyForecastHolder>() {
 
     override fun getItemCount(): Int {
         return items?.size ?: 0
@@ -63,6 +64,10 @@ class MainAdapter(private val items: List<ForecastCondition>?, private val conte
                 holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.green), android.graphics.PorterDuff.Mode.SRC_IN)
 
             } else -> holder.icon.setColorFilter(ContextCompat.getColor(context, R.color.black), android.graphics.PorterDuff.Mode.SRC_IN)
+        }
+
+        if (position == items.size-1) {
+            lovelyProgressDialog?.dismiss()
         }
     }
 
