@@ -12,8 +12,7 @@ class WeatherDayGridLayoutManager : GridLayoutManager {
 
     constructor(context: Context, spanCount: Int, orientation: Int, reverseLayout: Boolean) : super(context, spanCount, orientation, reverseLayout)
 
-    override fun onMeasure(recycler: RecyclerView.Recycler?, state: RecyclerView.State?,
-                           widthSpec: Int, heightSpec: Int) {
+    override fun onMeasure(recycler: RecyclerView.Recycler, state: RecyclerView.State, widthSpec: Int, heightSpec: Int) {
         val widthSize = View.MeasureSpec.getSize(widthSpec)
         val rows = Math.ceil((itemCount / spanCount).toDouble()).toInt() // Width of the RecyclerView
 

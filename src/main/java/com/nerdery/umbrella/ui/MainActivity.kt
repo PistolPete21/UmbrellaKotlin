@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
         getTomorrowSublistIndex(items)
         getMaxSublistIndex(items)
         val subListToday: List<ForecastCondition>? = items?.subList(1, tomorrowSublistIndex);
-        val subListTomorrow: List<ForecastCondition>? = items?.subList(tomorrowSublistIndex, maxSublistIndex)
+        val subListTomorrow: List<ForecastCondition>? = items?.subList(tomorrowSublistIndex, 48)
 
         for (i in 0..1) {
             // Instantiate the Views for inflating

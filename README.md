@@ -1,4 +1,4 @@
-# umbrellaKotlin-app
+# Umbrella App - Kotlin
 
 This project was a challenege project by The Nerdery that was based around using the DarkSky Api to create a fully functional weather application that gave the forecast for today and tomorrow.
 
@@ -17,13 +17,13 @@ First step - Get Weather Forecast
 ```
 Click on the cog in upper right corner and click on the zip code box and enter a new zip code. Once you hit the back arrow a new weather forecast should load
 ```
-![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/Screenshot1.JPG)
-![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/Screenshot2.JPG)
-![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/Screenshot3.JPG)
-![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/Screenshot4.JPG)
-![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/Screenshot5.JPG)
-![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/Screenshot6.JPG)
-![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/Screenshot7.JPG)
+![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/screenshot1.JPG)
+![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/screenshot2.JPG)
+![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/screenshot3.JPG)
+![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/screenshot4.JPG)
+![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/screenshot5.JPG)
+![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/screenshot6.JPG)
+![alt text](https://github.com/PistolPete21/umbrellaKotlin-app/blob/master/src/main/res/drawable/screenshot7.JPG)
 
 ## Authors
 
