@@ -1,6 +1,5 @@
 # Umbrella App - Kotlin
 
-This project was a challenge project by The Nerdery that was based around using the DarkSky Api to create a fully functional weather application that gave the forecast for today and tomorrow.
 
 ## Getting Started
 
