@@ -3,10 +3,8 @@ package com.nerdery.umbrella.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.CardView
-import android.support.v7.widget.RecyclerView
+import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -87,7 +85,7 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
 
     private fun setupView(forecastCondition: ForecastCondition?, hourlyResponse: HourlyResponse?) {
         // Make references to header views
-        val cardView:CardView = findViewById(R.id.fragment_card_view_weather)
+        val cardView: androidx.cardview.widget.CardView = findViewById(R.id.fragment_card_view_weather)
         val currentTemperature:TextView = findViewById(R.id.fragment_weather_degrees)
         val currentStatus:TextView = findViewById(R.id.fragment_weather_status)
         val currentLocation:TextView = findViewById(R.id.fragment_location_status)
@@ -126,7 +124,7 @@ class MainActivity : AppCompatActivity(), ZipLocationListener {
 
             // Make references to list_weather_recyclerview
             val todayTomorrow:TextView = cardHourlyForecast.findViewById(R.id.forecast_day)
-            val recyclerView:RecyclerView = cardHourlyForecast.findViewById(R.id.fragment_weather_item)
+            val recyclerView: androidx.recyclerview.widget.RecyclerView = cardHourlyForecast.findViewById(R.id.fragment_weather_item)
             recyclerView.layoutManager = WeatherDayGridLayoutManager(this, WeatherDayGridLayoutManager.calculateNoOfColumns(this))
 
             if (i == 0) {

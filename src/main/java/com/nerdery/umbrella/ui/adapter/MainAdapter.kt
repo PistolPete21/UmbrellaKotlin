@@ -2,8 +2,8 @@ package com.nerdery.umbrella.ui.adapter
 
 import android.app.Application
 import android.content.Context
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +17,7 @@ import com.nerdery.umbrella.util.DateTime
 import com.yarolegovich.lovelydialog.LovelyProgressDialog
 import kotlinx.android.synthetic.main.weather_grid_item.view.*
 
-class MainAdapter(private val items: List<ForecastCondition>?, private val context: Context, private val application: Application, private val lovelyProgressDialog: LovelyProgressDialog?) : RecyclerView.Adapter<MainAdapter.HourlyForecastHolder>() {
+class MainAdapter(private val items: List<ForecastCondition>?, private val context: Context, private val application: Application, private val lovelyProgressDialog: LovelyProgressDialog?) : androidx.recyclerview.widget.RecyclerView.Adapter<MainAdapter.HourlyForecastHolder>() {
 
     override fun getItemCount(): Int {
         return items?.size ?: 0
@@ -71,7 +71,7 @@ class MainAdapter(private val items: List<ForecastCondition>?, private val conte
         }
     }
 
-    class HourlyForecastHolder(v: View) : RecyclerView.ViewHolder(v) {
+    class HourlyForecastHolder(v: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(v) {
         val time: TextView = v.grid_item_hourly_hour
         val icon: ImageView = v.grid_item_hourly_icon
         val temperature: TextView = v.grid_item_hourly_temperature

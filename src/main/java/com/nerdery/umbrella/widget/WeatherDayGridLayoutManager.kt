@@ -1,18 +1,18 @@
 package com.nerdery.umbrella.widget
 
 import android.content.Context
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 
 
-class WeatherDayGridLayoutManager : GridLayoutManager {
+class WeatherDayGridLayoutManager : androidx.recyclerview.widget.GridLayoutManager {
 
     constructor(context: Context, spanCount: Int) : super(context, spanCount)
 
     constructor(context: Context, spanCount: Int, orientation: Int, reverseLayout: Boolean) : super(context, spanCount, orientation, reverseLayout)
 
-    override fun onMeasure(recycler: RecyclerView.Recycler, state: RecyclerView.State, widthSpec: Int, heightSpec: Int) {
+    override fun onMeasure(recycler: androidx.recyclerview.widget.RecyclerView.Recycler, state: androidx.recyclerview.widget.RecyclerView.State, widthSpec: Int, heightSpec: Int) {
         val widthSize = View.MeasureSpec.getSize(widthSpec)
         val rows = Math.ceil((itemCount / spanCount).toDouble()).toInt() // Width of the RecyclerView
 
